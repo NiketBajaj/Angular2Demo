@@ -10,11 +10,41 @@ var core_1 = require("@angular/core");
 var AppComponent = /** @class */ (function () {
     function AppComponent() {
         this.pageHeader = 'Employee Details';
+        this.imagePath = '/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png';
+        this.firstName = 'Tom';
+        this.lastName = 'Hopkins';
+        this.classesToApply = 'boldClass italicsClass';
+        this.applyBoldClass = true;
+        this.applyItalicsClass = false;
+        this.isBold = true;
+        this.fontSize = 25;
+        this.isItalics = true;
     }
+    AppComponent.prototype.getFullName = function () {
+        return this.firstName + ' ' + this.lastName;
+    };
+    AppComponent.prototype.addClasses = function () {
+        var classes = {
+            boldClass: this.applyBoldClass,
+            italicsClass: this.applyItalicsClass,
+        };
+        return classes;
+    };
+    AppComponent.prototype.addStyles = function () {
+        var styles = {
+            'font-size.px': this.fontSize,
+            'font-style': this.isItalics ? 'italic' : 'normal',
+            'font-weight': this.isBold ? 'bold' : 'normal',
+        };
+        return styles;
+    };
+    AppComponent.prototype.onClick = function () {
+        console.log('Button Clicked');
+    };
     AppComponent = __decorate([
         core_1.Component({
             selector: 'my-app',
-            template: "<div>\n                <h1>\n                    {{ pageHeader }}\n                </h1>\n                <my-employee></my-employee>\n            </div>",
+            templateUrl: "app/app.component.html",
         })
     ], AppComponent);
     return AppComponent;

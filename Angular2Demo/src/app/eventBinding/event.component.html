@@ -1,0 +1,11 @@
+﻿<div>
+    
+    Name: <input value="{{name}}" (input)="name=$event.target.value"/>
+    <br />
+    Name: <input [(ngModel)]="name" />
+    <br />
+    <!--<button on-click="onClick($event.target.value)">Submit</button>
+    <br />-->
+    You entered: {{name}}
+    <br /><br />
+</div>

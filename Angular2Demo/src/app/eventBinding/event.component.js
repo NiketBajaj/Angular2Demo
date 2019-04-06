@@ -7,26 +7,20 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var EmployeeComponent = /** @class */ (function () {
-    function EmployeeComponent() {
-        this.columnspan = 2;
-        this.firstName = 'Tom';
-        this.lastName = 'Hopkins';
-        this.gender = 'Male';
-        this.age = 20;
-        this.showDetails = false;
+var EventBindingComponent = /** @class */ (function () {
+    function EventBindingComponent() {
+        this.name = "Tom";
     }
-    EmployeeComponent.prototype.toggleDetails = function () {
-        this.showDetails = !this.showDetails;
+    EventBindingComponent.prototype.onClick = function () {
+        console.log('Button Clicked');
     };
-    EmployeeComponent = __decorate([
+    EventBindingComponent = __decorate([
         core_1.Component({
-            selector: "my-employee",
-            templateUrl: "app/employee/employee.component.html",
-            styleUrls: ["app/employee/employee.component.css"]
+            selector: "my-event",
+            templateUrl: "app/eventBinding/event.component.html"
         })
-    ], EmployeeComponent);
-    return EmployeeComponent;
+    ], EventBindingComponent);
+    return EventBindingComponent;
 }());
-exports.EmployeeComponent = EmployeeComponent;
-//# sourceMappingURL=employee.component.js.map
+exports.EventBindingComponent = EventBindingComponent;
+//# sourceMappingURL=event.component.js.map
