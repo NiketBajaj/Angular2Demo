@@ -1,4 +1,10 @@
-﻿<table>
+﻿<employee-count [all]="getTotalEmployeeCount()"
+                male={{getTotalMaleEmployeeCount()}}
+                female={{getTotalFemaleEmployeeCount()}}
+                (countRadioButtonSelctionChanged)="onEmployeeCountRadioButtonChange($event)">
+</employee-count>
+<br /><br />
+<table>
     <thead>
         <tr>
             <th>Code</th>
@@ -14,22 +20,25 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let employee of employees; trackBy:trackByEmpCode"><!-- let i = index; let isFirst = first; let isLast = last; let isEven = even; let isOdd = odd"-->
-            <td>{{employee.code | uppercase}}</td>
-            <td>{{employee.name | employeeTitle:employee.gender}}</td>
-            <td>{{employee.gender}}</td>
-            <td>{{employee.annualSalary | currency:'CAD':true:'1.2-2'}}</td>
-            <td>{{employee.dateOfBrith | date:'longDate' }}</td>
-            <!--<td>{{i}}</td>
+        <ng-container *ngFor="let employee of employees">
+            <tr *ngIf="selectedEmployeeCountRadioButton=='All'|| selectedEmployeeCountRadioButton == employee.gender ">
+                <!--trackBy:trackByEmpCode let i = index; let isFirst = first; let isLast = last; let isEven = even; let isOdd = odd"-->
+                <td>{{employee.code | uppercase}}</td>
+                <td>{{employee.name | employeeTitle:employee.gender}}</td>
+                <td>{{employee.gender}}</td>
+                <td>{{employee.annualSalary | currency:'CAD':true:'1.2-2'}}</td>
+                <td>{{employee.dateOfBrith | date:'longDate' }}</td>
+                <!--<td>{{i}}</td>
             <td>{{isFirst}}</td>
             <td>{{isLast}}</td>
             <td>{{isEven}}</td>
             <td>{{isOdd}}</td>-->
-        </tr>
+            </tr>
+        </ng-container>
         <tr *ngIf="!employees || employees.length ==0">
             <td colspan="5">No employees to display</td>
         </tr>
     </tbody>
 </table>
-<br />
-<button on-click="getEmployees()">Refresh Employees</button>
+<!--<br />
+<button on-click="getEmployees()">Refresh Employees</button>-->

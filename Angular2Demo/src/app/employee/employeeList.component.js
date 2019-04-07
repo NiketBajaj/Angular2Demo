@@ -12,14 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var EmployeeListComponent = /** @class */ (function () {
     function EmployeeListComponent() {
-        this.employees = [
-            { code: 'exp101', name: 'Tom', gender: 'Male', annualSalary: 5500, dateOfBrith: '2/25/1988' },
-            { code: 'exp102', name: 'Alex', gender: 'Male', annualSalary: 5700.95, dateOfBrith: '6/6/1988' },
-            { code: 'exp103', name: 'Mike', gender: 'Male', annualSalary: 5900, dateOfBrith: '8/16/1988' },
-            { code: 'exp104', name: 'Mary', gender: 'Female', annualSalary: 6500.826, dateOfBrith: '5/5/1988' },
-        ];
-    }
-    EmployeeListComponent.prototype.getEmployees = function () {
+        this.selectedEmployeeCountRadioButton = "All";
         this.employees = [
             { code: 'exp101', name: 'Tom', gender: 'Male', annualSalary: 5500, dateOfBrith: '2/25/1988' },
             { code: 'exp102', name: 'Alex', gender: 'Male', annualSalary: 5700.95, dateOfBrith: '6/6/1988' },
@@ -27,9 +20,18 @@ var EmployeeListComponent = /** @class */ (function () {
             { code: 'exp104', name: 'Mary', gender: 'Female', annualSalary: 6500.826, dateOfBrith: '5/5/1988' },
             { code: 'exp105', name: 'nancy', gender: 'Female', annualSalary: 6700.826, dateOfBrith: '5/6/1988' },
         ];
+    }
+    EmployeeListComponent.prototype.getTotalEmployeeCount = function () {
+        return this.employees.length;
     };
-    EmployeeListComponent.prototype.trackByEmpCode = function (index, employee) {
-        return employee.code;
+    EmployeeListComponent.prototype.getTotalMaleEmployeeCount = function () {
+        return this.employees.filter(function (e) { return e.gender === "Male"; }).length;
+    };
+    EmployeeListComponent.prototype.getTotalFemaleEmployeeCount = function () {
+        return this.employees.filter(function (e) { return e.gender === "Female"; }).length;
+    };
+    EmployeeListComponent.prototype.onEmployeeCountRadioButtonChange = function (selectedRadioButtonValue) {
+        this.selectedEmployeeCountRadioButton = selectedRadioButtonValue;
     };
     EmployeeListComponent = __decorate([
         core_1.Component({

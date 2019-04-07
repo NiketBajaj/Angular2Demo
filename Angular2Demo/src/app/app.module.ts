@@ -7,10 +7,11 @@ import { EmployeeComponent } from './employee/employee.component';
 import { EventBindingComponent } from './eventBinding/event.component';
 import { EmployeeListComponent } from './employee/employeeList.component';
 import { EmployeeTitlePipe } from './employee/employeeTitle.pipe';
+import { EmployeeCountComponent } from './employee/employeeCount.component';
 
 @NgModule({
     imports: [BrowserModule, FormsModule ],
-    declarations: [AppComponent, EmployeeComponent, EventBindingComponent, EmployeeListComponent, EmployeeTitlePipe ],
+    declarations: [AppComponent, EmployeeComponent, EventBindingComponent, EmployeeListComponent, EmployeeTitlePipe, EmployeeCountComponent ],
     bootstrap: [AppComponent ]
 })
 export class AppModule { }
