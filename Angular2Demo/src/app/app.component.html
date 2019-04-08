@@ -1,7 +1,19 @@
 ﻿<div>
+    Your Text : <input type="text" [(ngModel)]="userText"/>
+    <br /><br />
+    <simple [simpleInput]="userText"></simple>
+    <br /><br />
+
     <list-employee></list-employee>
     <br /><br />
-    <!--<h1>
+
+    <my-event></my-event>
+    <br /><br />
+
+    <my-employee></my-employee>
+    <br /><br />
+
+    <h1>
         {{ pageHeader ? pageHeader : "No Header" }}
     </h1>
     <img src="https://www.google.com/{{imagePath}}" />
@@ -27,7 +39,4 @@
 
     <button on-click="onClick()">Click 7</button>
     <br /><br />
-
-    <my-employee></my-employee>-->
-    
 </div>

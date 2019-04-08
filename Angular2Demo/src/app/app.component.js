@@ -19,6 +19,7 @@ var AppComponent = /** @class */ (function () {
         this.isBold = true;
         this.fontSize = 25;
         this.isItalics = true;
+        this.userText = "Pragim";
     }
     AppComponent.prototype.getFullName = function () {
         return this.firstName + ' ' + this.lastName;
@@ -44,7 +45,7 @@ var AppComponent = /** @class */ (function () {
     AppComponent = __decorate([
         core_1.Component({
             selector: 'my-app',
-            templateUrl: "app/app.component.html",
+            templateUrl: "app/app.component.html?v=${new Date().getTime()}",
         })
     ], AppComponent);
     return AppComponent;

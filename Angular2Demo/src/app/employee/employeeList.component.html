@@ -1,9 +1,12 @@
-﻿<employee-count [all]="getTotalEmployeeCount()"
+﻿
+
+<employee-count [all]="getTotalEmployeeCount()"
                 male={{getTotalMaleEmployeeCount()}}
                 female={{getTotalFemaleEmployeeCount()}}
                 (countRadioButtonSelctionChanged)="onEmployeeCountRadioButtonChange($event)">
 </employee-count>
 <br /><br />
+
 <table>
     <thead>
         <tr>
