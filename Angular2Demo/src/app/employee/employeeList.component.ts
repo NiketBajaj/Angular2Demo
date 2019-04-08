@@ -1,27 +1,25 @@
-﻿import { Component } from '@angular/core';
+﻿import { Component, OnInit } from '@angular/core';
 import { IEmployee } from './employee';
+import { EmployeeService } from './employee.service';
 
 @Component({
     selector: 'list-employee',
     templateUrl: 'app/employee/employeeList.component.html',
-    styleUrls: ['app/employee/employeeList.component.css']
+    styleUrls: ['app/employee/employeeList.component.css'],
+    providers: [EmployeeService] 
 })
 
 
-export class EmployeeListComponent {
+export class EmployeeListComponent implements OnInit {
     employees: IEmployee[];
-
     selectedEmployeeCountRadioButton: string = "All";
+    
+    constructor(private _employeeService: EmployeeService) {}
 
-    constructor() {
-        this.employees = [
-            { code: 'exp101', name: 'Tom', gender: 'Male', annualSalary: 5500, dateOfBrith: '2/25/1988' },
-            { code: 'exp102', name: 'Alex', gender: 'Male', annualSalary: 5700.95, dateOfBrith: '6/6/1988' },
-            { code: 'exp103', name: 'Mike', gender: 'Male', annualSalary: 5900, dateOfBrith: '8/16/1988' },
-            { code: 'exp104', name: 'Mary', gender: 'Female', annualSalary: 6500.826, dateOfBrith: '5/5/1988' },
-            { code: 'exp105', name: 'nancy', gender: 'Female', annualSalary: 6700.826, dateOfBrith: '5/6/1988' },
-        ]
+    ngOnInit() {
+        this.employees = this._employeeService.getEmployees();
     }
+
 
     getTotalEmployeeCount(): number {
         return this.employees.length;
