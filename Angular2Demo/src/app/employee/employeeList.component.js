@@ -15,9 +15,15 @@ var EmployeeListComponent = /** @class */ (function () {
     function EmployeeListComponent(_employeeService) {
         this._employeeService = _employeeService;
         this.selectedEmployeeCountRadioButton = "All";
+        this.statusMessage = "Loading data. Please wait...";
     }
     EmployeeListComponent.prototype.ngOnInit = function () {
-        this.employees = this._employeeService.getEmployees();
+        var _this = this;
+        this._employeeService.getEmployees()
+            .subscribe(function (employeesData) { return _this.employees = employeesData; }, function (error) {
+            _this.statusMessage = "Problem with the service. Please try again later.";
+            console.error(error);
+        });
     };
     EmployeeListComponent.prototype.getTotalEmployeeCount = function () {
         return this.employees.length;

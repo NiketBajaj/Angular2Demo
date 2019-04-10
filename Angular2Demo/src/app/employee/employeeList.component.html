@@ -1,6 +1,7 @@
 ﻿
 
-<employee-count [all]="getTotalEmployeeCount()"
+<employee-count *ngIf="employees"
+                [all]="getTotalEmployeeCount()"
                 male={{getTotalMaleEmployeeCount()}}
                 female={{getTotalFemaleEmployeeCount()}}
                 (countRadioButtonSelctionChanged)="onEmployeeCountRadioButtonChange($event)">
@@ -30,7 +31,7 @@
                 <td>{{employee.name | employeeTitle:employee.gender}}</td>
                 <td>{{employee.gender}}</td>
                 <td>{{employee.annualSalary | currency:'CAD':true:'1.2-2'}}</td>
-                <td>{{employee.dateOfBrith | date:'longDate' }}</td>
+                <td>{{employee.dateOfBirth | date:'longDate' }}</td>
                 <!--<td>{{i}}</td>
             <td>{{isFirst}}</td>
             <td>{{isLast}}</td>
@@ -38,7 +39,10 @@
             <td>{{isOdd}}</td>-->
             </tr>
         </ng-container>
-        <tr *ngIf="!employees || employees.length ==0">
+        <tr *ngIf="!employees">
+            <td colspan="5">{{statusMessage}}</td>
+        </tr>
+        <tr *ngIf="!employees && employees.length == 0">
             <td colspan="5">No employees to display</td>
         </tr>
     </tbody>
