@@ -7,16 +7,15 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var AppComponent = /** @class */ (function () {
-    function AppComponent() {
+var CSSEventComponent = /** @class */ (function () {
+    function CSSEventComponent() {
     }
-    AppComponent = __decorate([
+    CSSEventComponent = __decorate([
         core_1.Component({
-            selector: 'my-app',
-            templateUrl: "app/app.component.html?v=${new Date().getTime()}",
+            template: '<h1>The page you are looking for does not exist</h1>'
         })
-    ], AppComponent);
-    return AppComponent;
+    ], CSSEventComponent);
+    return CSSEventComponent;
 }());
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+exports.CSSEventComponent = CSSEventComponent;
+//# sourceMappingURL=CSSEvent.component.js.map

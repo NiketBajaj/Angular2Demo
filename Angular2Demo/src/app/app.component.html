@@ -1,42 +1,12 @@
 ﻿<div>
-    Your Text : <input type="text" [(ngModel)]="userText"/>
-    <br /><br />
-    <simple [simpleInput]="userText"></simple>
-    <br /><br />
-
-    <list-employee></list-employee>
-    <br /><br />
-
-    <my-event></my-event>
-    <br /><br />
-
-    <my-employee></my-employee>
-    <br /><br />
-
-    <h1>
-        {{ pageHeader ? pageHeader : "No Header" }}
-    </h1>
-    <img src="https://www.google.com/{{imagePath}}" />
-    <p style="font-size:18px;">{{getFullName()}}</p>
-
-    <p>Class binding</p>
-    <button class="colorClass" [class]="classesToApply">Click 1</button>
-    <br /><br />
-    <button class="colorClass" [class.boldClass]="applyBoldClass">Click 2</button>
-    <br /><br />
-    <button class="colorClass" [ngClass]="addClasses()">Click 3</button>
-    <br /><br />
-
-    <p>Style binding</p>
-    <button style="color:red;" [style.fontWeight]="isBold ? 'bold' : 'normal'">Click 4</button>
-    <br /><br />
-
-    <button style="color:red;" [style.font-size.px]="fontSize">Click 5</button>
-    <br /><br />
-
-    <button style="color:red;" [ngStyle]="addStyles()">Click 6</button>
-    <br /><br />
-
-    <button on-click="onClick()">Click 7</button>
-    <br /><br />
+    <div style="padding:5px;">
+        <ul class="nav nav-tabs">
+            <li><a routerLink="home">Home</a></li>
+            <li><a routerLink="employeeslist">Employees List</a></li>
+            <li><a routerLink="employees">Employees</a></li>
+            <li><a routerLink="event">Event Binding</a></li>
+            <li><a routerLink="cssevent">CSS Event</a></li>
+        </ul>
+        <router-outlet></router-outlet>
+    </div>
 </div>
