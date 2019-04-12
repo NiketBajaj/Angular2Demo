@@ -5,8 +5,7 @@ import { EmployeeService } from './employee.service';
 @Component({
     selector: 'list-employee',
     templateUrl: 'app/employee/employeeList.component.html',
-    styleUrls: ['app/employee/employeeList.component.css'],
-    providers: [EmployeeService] 
+    styleUrls: ['app/employee/employeeList.component.css']
 })
 
 
@@ -15,7 +14,7 @@ export class EmployeeListComponent implements OnInit {
     selectedEmployeeCountRadioButton: string = "All";
     statusMessage: string = "Loading data. Please wait...";
 
-    constructor(private _employeeService: EmployeeService) {}
+    constructor(private _employeeService: EmployeeService) { }
 
     ngOnInit() {
         this._employeeService.getEmployees()

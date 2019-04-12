@@ -27,7 +27,11 @@
         <ng-container *ngFor="let employee of employees">
             <tr *ngIf="selectedEmployeeCountRadioButton=='All'|| selectedEmployeeCountRadioButton == employee.gender ">
                 <!--trackBy:trackByEmpCode let i = index; let isFirst = first; let isLast = last; let isEven = even; let isOdd = odd"-->
-                <td>{{employee.code | uppercase}}</td>
+                <td>
+                    <a [routerLink]="['/employeeslist', employee.code]">
+                        {{employee.code | uppercase}}
+                    </a>
+                </td>
                 <td>{{employee.name | employeeTitle:employee.gender}}</td>
                 <td>{{employee.gender}}</td>
                 <td>{{employee.annualSalary | currency:'CAD':true:'1.2-2'}}</td>
@@ -47,5 +51,6 @@
         </tr>
     </tbody>
 </table>
+
 <!--<br />
 <button on-click="getEmployees()">Refresh Employees</button>-->

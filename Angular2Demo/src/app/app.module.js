@@ -21,12 +21,14 @@ var simple_component_1 = require("./Others/simple.component");
 var home_component_1 = require("./home/home.component");
 var pageNotFound_component_1 = require("./Others/pageNotFound.component");
 var CSSEvent_component_1 = require("./CSSEvent/CSSEvent.component");
+var employee_service_1 = require("./employee/employee.service");
 var appRoutes = [
     { path: 'home', component: home_component_1.HomeComponent },
     { path: 'employeeslist', component: employeeList_component_1.EmployeeListComponent },
     { path: 'employees', component: employee_component_1.EmployeeComponent },
     { path: 'event', component: event_component_1.EventBindingComponent },
     { path: 'cssevent', component: CSSEvent_component_1.CSSEventComponent },
+    { path: 'employeeslist/:code', component: employee_component_1.EmployeeComponent },
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: '**', component: pageNotFound_component_1.PageNotFoundComponent }
 ];
@@ -37,14 +39,15 @@ var AppModule = /** @class */ (function () {
         core_1.NgModule({
             imports: [
                 platform_browser_1.BrowserModule, forms_1.FormsModule,
-                http_1.HttpModule, router_1.RouterModule.forRoot(appRoutes, { useHash: true })
+                http_1.HttpModule, router_1.RouterModule.forRoot(appRoutes)
             ],
             declarations: [
                 app_component_1.AppComponent, employee_component_1.EmployeeComponent, event_component_1.EventBindingComponent, employeeList_component_1.EmployeeListComponent,
                 employeeTitle_pipe_1.EmployeeTitlePipe, employeeCount_component_1.EmployeeCountComponent, simple_component_1.SimpleComponent,
                 home_component_1.HomeComponent, pageNotFound_component_1.PageNotFoundComponent, CSSEvent_component_1.CSSEventComponent
             ],
-            bootstrap: [app_component_1.AppComponent]
+            bootstrap: [app_component_1.AppComponent],
+            providers: [employee_service_1.EmployeeService]
         })
     ], AppModule);
     return AppModule;
