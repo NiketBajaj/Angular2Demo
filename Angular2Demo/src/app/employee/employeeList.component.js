@@ -11,12 +11,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var employee_service_1 = require("./employee.service");
+var userPreferences_service_1 = require("../UserPreferences/userPreferences.service");
 var EmployeeListComponent = /** @class */ (function () {
-    function EmployeeListComponent(_employeeService) {
+    function EmployeeListComponent(_employeeService, _userPreferencesService) {
         this._employeeService = _employeeService;
+        this._userPreferencesService = _userPreferencesService;
         this.selectedEmployeeCountRadioButton = "All";
         this.statusMessage = "Loading data. Please wait...";
     }
+    Object.defineProperty(EmployeeListComponent.prototype, "colour", {
+        get: function () {
+            return this._userPreferencesService.colourPreference;
+        },
+        set: function (value) {
+            this._userPreferencesService.colourPreference = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
     EmployeeListComponent.prototype.ngOnInit = function () {
         var _this = this;
         this._employeeService.getEmployees()
@@ -37,13 +49,14 @@ var EmployeeListComponent = /** @class */ (function () {
     EmployeeListComponent.prototype.onEmployeeCountRadioButtonChange = function (selectedRadioButtonValue) {
         this.selectedEmployeeCountRadioButton = selectedRadioButtonValue;
     };
+    var _a;
     EmployeeListComponent = __decorate([
         core_1.Component({
             selector: 'list-employee',
             templateUrl: 'app/employee/employeeList.component.html',
             styleUrls: ['app/employee/employeeList.component.css']
         }),
-        __metadata("design:paramtypes", [employee_service_1.EmployeeService])
+        __metadata("design:paramtypes", [employee_service_1.EmployeeService, typeof (_a = typeof userPreferences_service_1.UserPreferencesService !== "undefined" && userPreferences_service_1.UserPreferencesService) === "function" ? _a : Object])
     ], EmployeeListComponent);
     return EmployeeListComponent;
 }());

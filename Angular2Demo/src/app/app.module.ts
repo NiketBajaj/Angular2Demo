@@ -16,6 +16,7 @@ import { PageNotFoundComponent } from './Others/pageNotFound.component';
 import { CSSEventComponent } from './CSSEvent/CSSEvent.component';
 
 import { EmployeeService } from './employee/employee.service';
+import { UserPreferencesService } from './UserPreferences/userPreferences.service';
 
 const appRoutes: Routes = [
     { path: 'home', component: HomeComponent },
@@ -37,6 +38,6 @@ const appRoutes: Routes = [
         EmployeeTitlePipe, EmployeeCountComponent, SimpleComponent,
         HomeComponent, PageNotFoundComponent, CSSEventComponent],
     bootstrap: [AppComponent],
-    providers: [EmployeeService]
+    providers: [EmployeeService, UserPreferencesService]
 })
 export class AppModule { }

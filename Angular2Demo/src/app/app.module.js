@@ -22,6 +22,7 @@ var home_component_1 = require("./home/home.component");
 var pageNotFound_component_1 = require("./Others/pageNotFound.component");
 var CSSEvent_component_1 = require("./CSSEvent/CSSEvent.component");
 var employee_service_1 = require("./employee/employee.service");
+var userPreferences_service_1 = require("./UserPreferences/userPreferences.service");
 var appRoutes = [
     { path: 'home', component: home_component_1.HomeComponent },
     { path: 'employeeslist', component: employeeList_component_1.EmployeeListComponent },
@@ -47,7 +48,7 @@ var AppModule = /** @class */ (function () {
                 home_component_1.HomeComponent, pageNotFound_component_1.PageNotFoundComponent, CSSEvent_component_1.CSSEventComponent
             ],
             bootstrap: [app_component_1.AppComponent],
-            providers: [employee_service_1.EmployeeService]
+            providers: [employee_service_1.EmployeeService, userPreferences_service_1.UserPreferencesService]
         })
     ], AppModule);
     return AppModule;
