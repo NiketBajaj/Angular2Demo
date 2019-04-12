@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
+import { TestModule } from './test.module';
 
 import { AppComponent } from './app.component';
 import { EmployeeComponent } from './employee/employee.component';
@@ -16,7 +17,6 @@ import { PageNotFoundComponent } from './Others/pageNotFound.component';
 import { CSSEventComponent } from './CSSEvent/CSSEvent.component';
 
 import { EmployeeService } from './employee/employee.service';
-import { UserPreferencesService } from './UserPreferences/userPreferences.service';
 
 const appRoutes: Routes = [
     { path: 'home', component: HomeComponent },
@@ -31,13 +31,16 @@ const appRoutes: Routes = [
 
 @NgModule({
     imports: [
-        BrowserModule, FormsModule,
-        HttpModule, RouterModule.forRoot(appRoutes)], //, { useHash: true }
+        BrowserModule,
+        FormsModule,
+        HttpModule,
+        RouterModule.forRoot(appRoutes),
+        TestModule], //, { useHash: true }
     declarations: [
         AppComponent, EmployeeComponent, EventBindingComponent, EmployeeListComponent,
         EmployeeTitlePipe, EmployeeCountComponent, SimpleComponent,
         HomeComponent, PageNotFoundComponent, CSSEventComponent],
     bootstrap: [AppComponent],
-    providers: [EmployeeService, UserPreferencesService]
+    providers: [EmployeeService]
 })
 export class AppModule { }

@@ -49,14 +49,14 @@ var EmployeeListComponent = /** @class */ (function () {
     EmployeeListComponent.prototype.onEmployeeCountRadioButtonChange = function (selectedRadioButtonValue) {
         this.selectedEmployeeCountRadioButton = selectedRadioButtonValue;
     };
-    var _a;
     EmployeeListComponent = __decorate([
         core_1.Component({
             selector: 'list-employee',
             templateUrl: 'app/employee/employeeList.component.html',
-            styleUrls: ['app/employee/employeeList.component.css']
+            styleUrls: ['app/employee/employeeList.component.css'],
         }),
-        __metadata("design:paramtypes", [employee_service_1.EmployeeService, typeof (_a = typeof userPreferences_service_1.UserPreferencesService !== "undefined" && userPreferences_service_1.UserPreferencesService) === "function" ? _a : Object])
+        __metadata("design:paramtypes", [employee_service_1.EmployeeService,
+            userPreferences_service_1.UserPreferencesService])
     ], EmployeeListComponent);
     return EmployeeListComponent;
 }());
