@@ -1,7 +1,7 @@
 ﻿import { Component, OnInit} from '@angular/core';
 import { IEmployee } from './employee';
 import { EmployeeService } from './employee.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
     selector : "my-employee",
@@ -10,16 +10,22 @@ import { ActivatedRoute } from '@angular/router';
 })
 
 export class EmployeeComponent implements OnInit {
-    employee: IEmployee;
+    employee: void | IEmployee;
     statusMessage: string = "Loading data. Please wait...";
 
     constructor(private _employeeService: EmployeeService,
-        private _activatedRoute: ActivatedRoute) { }
+        private _activatedRoute: ActivatedRoute,
+        private _router: Router) { }
+
+
+    onBackButtonClick(): void {
+        this._router.navigate(['/employeeslist'])
+    }
 
     ngOnInit() {
         let empCode: string = this._activatedRoute.snapshot.params['code'];
-        this._employeeService.getEmployeeByCode(empCode)
-            .subscribe((employeeData) => {
+        this._employeeService.getEmployeeByCode(empCode).then(
+            (employeeData) => {
                 if (employeeData == null) {
                     this.statusMessage =
                         'Employee with the specified Employee Code does not exist';
@@ -28,11 +34,11 @@ export class EmployeeComponent implements OnInit {
                     this.employee = employeeData;
                 }
             },
-                (error) => {
-                    this.statusMessage =
-                        'Problem with the service. Please try again after sometime';
-                    console.error(error);
-                });
+        ).catch((error) => {
+            this.statusMessage =
+                'Problem with the service. Please try again after sometime';
+            console.error(error);
+        });
     }
 
     showDetails: boolean = false;
