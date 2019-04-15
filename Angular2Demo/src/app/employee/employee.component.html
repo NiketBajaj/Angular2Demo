@@ -43,3 +43,9 @@
 <div style="margin-top:5px;">
     <input type="button" class="btn btn-primary" on-click="onBackButtonClick()" value="Back to Employee List" />
 </div>
+
+<div style="margin-top:5px;" *ngIf="!subscription.closed">
+    <input type="button" class="btn btn-primary" 
+           on-click="onCancelButtonClick()" 
+           value="Cancel Request" />
+</div>

@@ -25,11 +25,16 @@ var EmployeeService = /** @class */ (function () {
             .map(function (response) { return response.json(); })
             .catch(this.handleError);
     };
+    //getEmployeeByCode(empCode: string): Promise<void | IEmployee> {
+    //    return this._http.get('http://localhost:57343/api/employees/' + empCode)
+    //        .map((response: Response) => <IEmployee>response.json())
+    //        .toPromise()
+    //        .catch(this.handlePromiseError);
+    //}
     EmployeeService.prototype.getEmployeeByCode = function (empCode) {
         return this._http.get('http://localhost:57343/api/employees/' + empCode)
             .map(function (response) { return response.json(); })
-            .toPromise()
-            .catch(this.handlePromiseError);
+            .catch(this.handleError);
     };
     EmployeeService.prototype.handlePromiseError = function (error) {
         console.error(error);

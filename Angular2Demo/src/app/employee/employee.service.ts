@@ -18,11 +18,17 @@ export class EmployeeService {
             .catch(this.handleError);
     }
 
-    getEmployeeByCode(empCode: string): Promise<void | IEmployee> {
+    //getEmployeeByCode(empCode: string): Promise<void | IEmployee> {
+    //    return this._http.get('http://localhost:57343/api/employees/' + empCode)
+    //        .map((response: Response) => <IEmployee>response.json())
+    //        .toPromise()
+    //        .catch(this.handlePromiseError);
+    //}
+
+    getEmployeeByCode(empCode: string): Observable<IEmployee> {
         return this._http.get('http://localhost:57343/api/employees/' + empCode)
             .map((response: Response) => <IEmployee>response.json())
-            .toPromise()
-            .catch(this.handlePromiseError);
+            .catch(this.handleError);
     }
 
     handlePromiseError(error: Response) {

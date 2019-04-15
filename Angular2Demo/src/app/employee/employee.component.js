@@ -12,6 +12,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var employee_service_1 = require("./employee.service");
 var router_1 = require("@angular/router");
+require("rxjs/add/operator/retry");
+require("rxjs/add/operator/retryWhen");
+require("rxjs/add/operator/delay");
+require("rxjs/add/operator/scan");
 var EmployeeComponent = /** @class */ (function () {
     function EmployeeComponent(_employeeService, _activatedRoute, _router) {
         this._employeeService = _employeeService;
@@ -23,10 +27,45 @@ var EmployeeComponent = /** @class */ (function () {
     EmployeeComponent.prototype.onBackButtonClick = function () {
         this._router.navigate(['/employeeslist']);
     };
+    EmployeeComponent.prototype.onCancelButtonClick = function () {
+        this.statusMessage = "Request Cancelled";
+        this.subscription.unsubscribe();
+    };
+    //ngOnInit() {
+    //    let empCode: string = this._activatedRoute.snapshot.params['code'];
+    //    this._employeeService.getEmployeeByCode(empCode).then(
+    //        (employeeData) => {
+    //            if (employeeData == null) {
+    //                this.statusMessage =
+    //                    'Employee with the specified Employee Code does not exist';
+    //            }
+    //            else {
+    //                this.employee = employeeData;
+    //            }
+    //        },
+    //    ).catch((error) => {
+    //        this.statusMessage =
+    //            'Problem with the service. Please try again after sometime';
+    //        console.error(error);
+    //    });
+    //}
     EmployeeComponent.prototype.ngOnInit = function () {
         var _this = this;
         var empCode = this._activatedRoute.snapshot.params['code'];
-        this._employeeService.getEmployeeByCode(empCode).then(function (employeeData) {
+        this.subscription = this._employeeService.getEmployeeByCode(empCode)
+            .retryWhen(function (err) {
+            return err.scan(function (retryCount) {
+                retryCount += 1;
+                if (retryCount < 6) {
+                    _this.statusMessage = 'Retrying...Attempt #' + retryCount;
+                    return retryCount;
+                }
+                else {
+                    throw (err);
+                }
+            }, 0).delay(1000);
+        })
+            .subscribe(function (employeeData) {
             if (employeeData == null) {
                 _this.statusMessage =
                     'Employee with the specified Employee Code does not exist';
@@ -34,7 +73,7 @@ var EmployeeComponent = /** @class */ (function () {
             else {
                 _this.employee = employeeData;
             }
-        }).catch(function (error) {
+        }, function (error) {
             _this.statusMessage =
                 'Problem with the service. Please try again after sometime';
             console.error(error);
